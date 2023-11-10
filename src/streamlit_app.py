@@ -7,10 +7,11 @@ import subprocess
 import shutil
 
 # Set OpenAI API key
-default_key = st.secrets["OPENAI_API_KEY"]
+#default_key = st.secrets["OPENAI_API_KEY"]
 personal_api_key = os.environ.get("OPENAI_API_KEY")
 
-api_key = personal_api_key if personal_api_key else default_key
+api_key = personal_api_key 
+#if personal_api_key else default_key
 openai.api_key = api_key
 
 # Function from video_util.py
@@ -52,11 +53,12 @@ def correct_transcription(transcription):
         model="gpt-3.5-turbo", 
         temperature=0.5, 
         messages=[
-            {"role": "system", "content": f"Correct this transcription, return in markdown format with line breaks. At the end, generate 10 relevant tags with a # prefix for storing in notetaking app."},
+            {"role": "system", "content": f"Correct this transcription, return the full transcription in markdown format with line breaks. At the end, generate 10 relevant tags with a # prefix for storing in notetaking app."},
             {"role": "user", "content": transcription}
         ]
     )
-    return response['choices'][0]['message']['content']
+    corrected_content = response.choices[0].message.content
+    return corrected_content
 
 
 
