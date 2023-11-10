@@ -39,7 +39,7 @@ def convert_to_audio(video_file, audio_file):
 # Function from openai_util.py
 def transcribe_audio(audio_file):
     with open(audio_file, "rb") as audio_file:
-        response = openai.audio.transcriptions(
+        response = openai.audio.transcriptions.create(
             file=audio_file, 
             model="whisper-1", 
             response_format="text"
