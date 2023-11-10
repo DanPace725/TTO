@@ -12,6 +12,8 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # Function from video_util.py
 def save_uploaded_file(uploaded_file):
     try:
+        if not os.path.exists('uploads'):
+            os.makedirs('uploads')
         with open(os.path.join('uploads', uploaded_file.name), "wb") as f:
             f.write(uploaded_file.getbuffer())
         return os.path.join('uploads', uploaded_file.name)
