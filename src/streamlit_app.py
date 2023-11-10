@@ -7,11 +7,10 @@ import subprocess
 import shutil
 
 # Set OpenAI API key
-#default_key = st.secrets["OPENAI_API_KEY"]
+default_key = st.secrets["OPENAI_API_KEY"]
 personal_api_key = os.environ.get("OPENAI_API_KEY")
 
-api_key = personal_api_key 
-#if personal_api_key else default_key
+api_key = personal_api_key if personal_api_key else default_key
 openai.api_key = api_key
 
 # Function from video_util.py
