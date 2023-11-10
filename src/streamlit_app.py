@@ -48,7 +48,7 @@ def transcribe_audio(audio_file):
 
 # Function from openai_util.py
 def correct_transcription(transcription):
-    response = openai.chat.completion.create(
+    response = openai.chat.completions.create(
         model="gpt-3.5-turbo", 
         temperature=0.5, 
         messages=[
